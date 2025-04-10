@@ -19,7 +19,6 @@ Este é um sistema de **gerenciamento de hotel** desenvolvido em Python. Ele per
 
 - **main.py**: Contém a lógica principal do sistema, incluindo as classes `Hotel`, `Cliente` e `Reserva`, e os métodos que manipulam o cadastro e reservas.
 - **hotel.py** (opcional): Arquivo de configuração para dados persistentes do hotel (se necessário).
-- **requirements.txt**: Lista das dependências do projeto.
 
 ## Instalação
 
