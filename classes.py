@@ -115,9 +115,9 @@ class Hotel:
 
 
 
-    def adicionarQuarto(self, tipo, preco):
+    def adicionarQuarto(self, numero, tipo, preco):
         novo_quarto = {
-            "Número": self.numero_quarto,
+            "Número": numero,
             "Tipo": tipo,
             "Preço": preco,
             "Status": True
@@ -208,3 +208,27 @@ class Hotel:
                 return
         
         print("Cliente não encontrado.")
+
+    def adicionarReserva(self, cliente_id, numero_quarto, data_checkin, data_checkout):
+        cliente = next((c for c in self.lista_de_clientes if c["ID"] == cliente_id), None)
+        quarto = next((q for q in self.lista_de_quartos if q["Número"] == numero_quarto), None)
+        
+        if cliente is None:
+            return None 
+        
+        if quarto is None or not quarto["Status"]: 
+            return None
+        
+        reserva = {
+            "ID": len(self.lista_de_reservas) + 1,
+            "ClienteID": cliente_id, 
+            "Quarto": numero_quarto,
+            "Check-in": data_checkin,
+            "Check-out": data_checkout
+        }
+        
+        self.lista_de_reservas.append(reserva)
+        
+        quarto["Status"] = False
+        
+        return reserva 

@@ -249,6 +249,7 @@ def main(page: ft.Page):
                     )
                 )
         page.update()
+
     
     def show_available_quartos():
         output_area.controls.clear()
@@ -287,15 +288,16 @@ def main(page: ft.Page):
 
             if numero and tipo and preco:
                 try:
-                    preco_float = float(preco)
-                    hotel.adicionarQuarto(numero, tipo, preco_float)
+                    preco_float = float(preco)  # Convertendo o preço para float
+                    hotel.adicionarQuarto(numero, tipo, preco_float)  # Chamando o método com os 3 parâmetros
                     close_dlg(e)
                     show_snackbar(f"Quarto {numero} cadastrado com sucesso!")
                     show_all_quartos()
                 except ValueError:
-                    show_snackbar("Preço deve ser um número!", ft.colors.RED)
+                    show_snackbar("Preço deve ser um número válido!", ft.colors.RED)
             else:
                 show_snackbar("Preencha todos os campos!", ft.colors.RED)
+
 
         numero_field = ft.TextField(label="Número do Quarto")
         tipo_field = ft.TextField(label="Tipo (Ex: Solteiro, Casal)")
@@ -373,8 +375,8 @@ def main(page: ft.Page):
         dlg_modal.open = True
         page.update()
 
-    def delete_quarto_dialog(e):
 
+    def delete_quarto_dialog(e):
         def close_dlg(e):
             dlg_modal.open = False
             page.update()
@@ -412,6 +414,7 @@ def main(page: ft.Page):
         page.dialog = dlg_modal
         dlg_modal.open = True
         page.update()
+
 
     
     # (Implementar add_quarto_dialog, modify_quarto_dialog, delete_quarto_dialog similar aos de clientes)
@@ -490,6 +493,7 @@ def main(page: ft.Page):
         dlg_modal.open = True
         page.update()
 
+
     def show_all_reservas():
         output_area.controls.clear()
         if not hotel.lista_de_reservas:
@@ -502,7 +506,7 @@ def main(page: ft.Page):
                             content=ft.Column(
                                 controls=[
                                     ft.Text(f"ID: {reserva['ID']}"),
-                                    ft.Text(f"Cliente ID: {reserva['ClienteID']}"),
+                                    ft.Text(f"Cliente ID: {reserva['ClienteID']}"),  # Acesso à chave 'ClienteID'
                                     ft.Text(f"Quarto: {reserva['Quarto']}"),
                                     ft.Text(f"Check-in: {reserva['Check-in']}"),
                                     ft.Text(f"Check-out: {reserva['Check-out']}"),
@@ -514,6 +518,7 @@ def main(page: ft.Page):
                     )
                 )
         page.update()
+
 
     def modify_reserva_dialog(e):
         def close_dlg(e):
@@ -567,6 +572,7 @@ def main(page: ft.Page):
         dlg_modal.open = True
         page.update()
 
+
     def delete_reserva_dialog(e):
         def close_dlg(e):
             dlg_modal.open = False
@@ -610,6 +616,7 @@ def main(page: ft.Page):
         page.dialog = dlg_modal
         dlg_modal.open = True
         page.update()
+
 
     
     # ========== MAIN VIEW ==========
